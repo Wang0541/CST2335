@@ -40,32 +40,4 @@
         android:hint="@string/password"
         android:inputType="textPassword" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ButtonText1"
-        android:id="@+id/radioButton" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ButtonText2"
-        android:id="@+id/checkBox" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abc"
-        android:id="@+id/switch1" />
-
-    <ImageButton
-        android:layout_width="45dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/image"
-        android:id="@+id/imageButton"
-        android:clickable="false"
-        android:layout_weight="0.17"
-        android:baselineAlignBottom="false"
-        android:background="@android:drawable/btn_star_big_on" />
-
 </LinearLayout>

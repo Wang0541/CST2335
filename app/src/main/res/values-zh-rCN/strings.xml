@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab1</string>
+    <string name="hello_message">你好</string>
+    <string name="ButtonText">按键</string>
+
+    <string name="title_activity_login">登录用户</string>
+    <string name="textView">登录 </string>
+    <string name="email_hint">用户名</string>
+    <string name="textView1">密码输入</string>
+    <string name="password">密码</string>
+
+    <string name="ButtonText1">键1</string>
+    <string name="ButtonText2">键2</string>
+    <string name="abc">Shou quan</string>
+    <string name="image">图片</string>
+
+</resources>

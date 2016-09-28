@@ -4,14 +4,21 @@
     <string name="ButtonText">I\'m a button</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="textView">Login</string>
-    <string name="email_hint">login name</string>
+    <string name="email_hint">email@domain.com</string>
     <string name="textView1">Password</string>
     <string name="password">password</string>
 
+    <string name="loginButton">Log in</string>
     <string name="ButtonText1">Button 1</string>
-    <string name="ButtonText2">Button 2</string>
+    <string name="ButtonText2">Back</string>
 
     <string name="abc">Enable Something</string>
     <string name="image">Image_star</string>
+
+    <string name="dialog_message">Do you want to finish this activity?</string>
+    <string name="dialog_title">Exit?</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">Cancel</string>
+
 
 </resources>

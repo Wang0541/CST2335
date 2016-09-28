@@ -11,8 +11,13 @@
     <string name="password">密码</string>
 
     <string name="ButtonText1">键1</string>
-    <string name="ButtonText2">键2</string>
+    <string name="ButtonText2">退出</string>
     <string name="abc">Shou quan</string>
     <string name="image">图片</string>
+
+    <string name="dialog_message">你确定结束应用程序?</string>
+    <string name="dialog_title">结束应用程序</string>
+    <string name="ok">是</string>
+    <string name="cancel">否</string>
 
 </resources>

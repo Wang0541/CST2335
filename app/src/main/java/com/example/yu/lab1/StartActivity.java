@@ -24,22 +24,43 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, ListItemsActivity.class);
                 //data back from the activity
-                //what does requestCode mean?? any random number??
+                // get the result from this class when called onActivityResult
                 startActivityForResult(intent, 5);
             }
         });
+
+        Log.i(ACTIVITY_NAME,"in onCreate");
+
+        Button start_chatButton = (Button)findViewById(R.id.Chat_button);
+        start_chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Log.i(ACTIVITY_NAME,"User clicked Start Chat");
+
+                Intent intentChat = new Intent(StartActivity.this,ChatWindow.class);
+                startActivity(intentChat);
+            }
+        });
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == 5){
-            Log.i(ACTIVITY_NAME,"Returned to StartActivity.onActivityRestult");
-        }else if(requestCode == Activity.RESULT_OK){
+
             String messagePassed = data.getStringExtra("Response");
-            CharSequence text = "ListItemsActivity passed: " + messagePassed;
-            int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(StartActivity.this , text, duration);
-            toast.show();
+            Log.i("abcd", messagePassed);
+            //look in the “extra data” container of the Intent to see if there is a string called “Response”.
+            if(resultCode ==Activity.RESULT_OK) {
+
+                Log.i(ACTIVITY_NAME,"Returned to StartActivity.onActivityRestult");
+                CharSequence text = "ListItemsActivity passed: " + messagePassed;
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(StartActivity.this, text, duration);
+                toast.show();
+            }
+
         }
+
     }
 
     @Override

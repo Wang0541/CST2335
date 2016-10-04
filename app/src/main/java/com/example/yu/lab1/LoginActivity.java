@@ -17,6 +17,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "StartActivity";
     protected static final String SETTING = "anything";
+    protected static final String TAG = "Jamesdebug";
 
 
     Button login;
@@ -45,24 +46,30 @@ public class LoginActivity extends AppCompatActivity {
 
                 // save data to the context, think about Scanner(System.in)
                 SharedPreferences prs = getSharedPreferences(SETTING, Context.MODE_PRIVATE);
-                //why do we have to add editor here?
                 SharedPreferences.Editor editor = prs.edit();
+
                 login_Name = (EditText)findViewById(R.id.editInp);
 
+                // Once you get editor, you will be able to use putString method
                 // when you put String here, we should get string back after
                 editor.putString("DefaultEmail",login_Name.getText().toString() );
                 editor.commit();
+
                 // first parameter: back page; second parameter: what is the next page
                 Intent intent = new Intent(LoginActivity.this,StartActivity.class);
                 startActivity(intent);
             }
         });
+
+        Log.i(ACTIVITY_NAME,"in onCreate");
     }
 
     @Override
     protected void onResume(){
+
         super.onResume();
         Log.i(ACTIVITY_NAME, "In onResume()");
+        Log.i(TAG, "debug message");
 
     }
     @Override
@@ -72,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         Log.i(ACTIVITY_NAME, "In onStart()");
 
-        // save data to the context, think about Scanner(System.in)
         SharedPreferences prs = getSharedPreferences(SETTING, Context.MODE_PRIVATE);
         // set defaultEmail symtax: email@domain.com
         String defaultEmail = prs.getString("DefaultEmail", "email@domain.com");

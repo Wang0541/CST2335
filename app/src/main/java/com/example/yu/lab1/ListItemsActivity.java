@@ -67,6 +67,7 @@ public class ListItemsActivity extends AppCompatActivity {
         });
 
         checkbox = (CheckBox)findViewById(R.id.checkBox);
+                                    //why is two parameters here?
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,7 +75,7 @@ public class ListItemsActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ListItemsActivity.this);
                     // 2. Chain together various setter methods to set the dialog characteristics
                     builder.setMessage(R.string.dialog_message)
-
+                    //This means that setTitle(), setPositiveButton(), setNegativeButton(), setMessage() all return the builder object
                             .setTitle(R.string.dialog_title)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {

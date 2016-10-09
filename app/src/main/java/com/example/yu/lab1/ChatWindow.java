@@ -1,11 +1,15 @@
 package com.example.yu.lab1;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,12 @@ import java.util.ArrayList;
 import static android.R.id.list;
 
 public class ChatWindow extends AppCompatActivity {
+    public static final String ACTIVITY_NAME = "Query";
+    public static final String SQL_MESSAGE="SQL MESSAGE:";
+    public static final String COLUMN_COUNT = "Cursor\'s  column count= ";
+
+    SQLiteDatabase db;
+    Cursor cursor;
 
     ListView listView;
     EditText editText;
@@ -41,6 +51,23 @@ public class ChatWindow extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        final ChatDatabaseHelper chatDatabaseHelper = new ChatDatabaseHelper(this);
+        //open database
+        db = chatDatabaseHelper.getWritableDatabase();
+        String[] allColumns = { ChatDatabaseHelper.KEY_ID, ChatDatabaseHelper.KEY_MESSAGE };
+        cursor = db.query(chatDatabaseHelper.TABLE_NAME,allColumns, null, null, null, null, null);
+
+        while(!cursor.isAfterLast() )
+            Log.i(ACTIVITY_NAME, SQL_MESSAGE + cursor.getString( cursor.getColumnIndex( ChatDatabaseHelper.KEY_MESSAGE) ) );
+
+        Log.i(ACTIVITY_NAME,  COLUMN_COUNT+ cursor.getColumnCount() );
+        for(int i = 0; i < cursor.getCount(); i++){
+            System.out.println("Column "+ i +" name is "+cursor.getColumnName(i));
+            cursor.moveToNext();
+        }
+
 
         listView = (ListView)findViewById(R.id.list_item);
         editText = (EditText)findViewById(R.id.edit_message);
@@ -85,6 +112,8 @@ public class ChatWindow extends AppCompatActivity {
             public void onClick(View v) {
 
                 list.add(editText.getText().toString());
+                ContentValues cValues = new ContentValues();
+                cValues.put(chatDatabaseHelper.KEY_MESSAGE,editText.getText().toString());
                 //this restarts the process of getCount()/ getView()
                 messageAdapter.notifyDataSetChanged();
                 editText.setText("");
@@ -92,8 +121,15 @@ public class ChatWindow extends AppCompatActivity {
             }
         });
 
+
     }
-    //inner class
+    @Override
+    protected void onDestroy() {
+        Log.i(ACTIVITY_NAME, "In onDestroy()");
+        super.onDestroy();
+        cursor.close();
+        db.close();
+    }
 
 
 

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import static android.R.attr.onClick;
+
 public class StartActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "StartActivity";
 
@@ -18,6 +20,8 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         Button start_button = (Button)findViewById(R.id.button);
+        Button start_chatButton = (Button)findViewById(R.id.Chat_button);
+        Button weather_button =(Button)findViewById(R.id.weather_button);
 
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +35,6 @@ public class StartActivity extends AppCompatActivity {
 
         Log.i(ACTIVITY_NAME,"in onCreate");
 
-        Button start_chatButton = (Button)findViewById(R.id.Chat_button);
         start_chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +44,18 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intentChat);
             }
         });
+
+        weather_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(ACTIVITY_NAME,"User clicked weather button");
+
+                Intent intentWeather = new Intent(StartActivity.this,WeatherForecast.class);
+                startActivity(intentWeather);
+            }
+        });
+
+
 
     }
 

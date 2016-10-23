@@ -54,8 +54,8 @@ public class ChatWindow extends AppCompatActivity {
 
 
         final ChatDatabaseHelper chatDatabaseHelper = new ChatDatabaseHelper(this);
-        //open database
         db = chatDatabaseHelper.getWritableDatabase();
+
         String[] allColumns = { ChatDatabaseHelper.KEY_ID, ChatDatabaseHelper.KEY_MESSAGE };
         cursor = db.query(chatDatabaseHelper.TABLE_NAME,allColumns, null, null, null, null, null);
 
@@ -63,7 +63,7 @@ public class ChatWindow extends AppCompatActivity {
 
         cursor.moveToFirst();
         for(int i = 0; i < cursor.getCount(); i++){
-            System.out.println("Column "+ i +" name is "+cursor.getColumnName(i));
+            //System.out.println("Column "+ i +" name is "+cursor.getColumnName(i));
             Log.i(ACTIVITY_NAME, SQL_MESSAGE + cursor.getString( cursor.getColumnIndex( ChatDatabaseHelper.KEY_MESSAGE) ) );
             //shows the message in the screen when you onCreate this program
             list.add(cursor.getString( cursor.getColumnIndex( ChatDatabaseHelper.KEY_MESSAGE)));
@@ -115,6 +115,7 @@ public class ChatWindow extends AppCompatActivity {
 
                 list.add(editText.getText().toString());
                 ContentValues cValues = new ContentValues();
+                //insert data
                 cValues.put(chatDatabaseHelper.KEY_MESSAGE,editText.getText().toString());
                 db.insert(chatDatabaseHelper.TABLE_NAME, "null",cValues);
                 //this restarts the process of getCount()/ getView()

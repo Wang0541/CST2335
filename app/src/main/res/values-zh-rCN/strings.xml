@@ -23,6 +23,11 @@
 
     <string name="ButtonTextStart">开始聊天</string>
     <string name="sent_button">发送</string>
-    <string name="message_textView">内容</string>
+
+
+    <string name="weatherButton">天气</string>
+    <string name="temperature"> 温度 </string>
+    <string name="temperature_min">minimum 温度 </string>
+    <string name="temperature_max">maximum 温度 </string>
 
 </resources>

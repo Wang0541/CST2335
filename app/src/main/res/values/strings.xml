@@ -28,7 +28,12 @@
     <string name="message_textView">new Text</string>
     <string name="image_desc">Call out/in</string>
 
+    <string name="weatherButton">Check weather</string>
+    <string name="title_activity_weather_forecast">WeatherForecast</string>
 
+    <string name="temperature"> temperature </string>
+    <string name="temperature_min">minimum temperature </string>
+    <string name="temperature_max">maximum temperature </string>
 
 
 </resources>

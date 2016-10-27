@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import java.net.URL;
+import java.util.StringTokenizer;
 
 
 import static java.lang.System.in;
@@ -67,8 +68,9 @@ public class WeatherForecast extends AppCompatActivity {
         tempMax = (TextView)findViewById(R.id.temp_max_textView);
         weatherImage = (ImageView) findViewById(R.id.weather_imageView);
 
+        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=d99666875e0e51521f0040a3d97d0f6a&mode=xml&units=metric";
         ForecastQuery fq = new ForecastQuery();
-        fq.execute();
+        fq.execute(weatherURL);
     }
 
     public static Bitmap getImage(URL url) {
@@ -93,7 +95,7 @@ public class WeatherForecast extends AppCompatActivity {
 
     private class ForecastQuery extends AsyncTask<String,Integer,String>{
 
-        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=d99666875e0e51521f0040a3d97d0f6a&mode=xml&units=metric";
+
         String temperatureText=null;
         String temMinText =null;
         String temMaxText =null;
@@ -104,9 +106,9 @@ public class WeatherForecast extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-
+            String wURL = params[0];
             try {
-                URL url = new URL(weatherURL);
+                URL url = new URL(wURL);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
@@ -180,10 +182,8 @@ public class WeatherForecast extends AppCompatActivity {
 
                 } catch ( XmlPullParserException ex ){
                     return null;
-                }finally {
-                    in.close();
                 }
-                return "";
+                return (temperatureText +" " +temMinText+" " + temMaxText);
 
             }catch (IOException ioe){
                 Log.i("IOException"," 1231231231");
@@ -203,9 +203,11 @@ public class WeatherForecast extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            temp.setText("Temperature = "+temperatureText);
-            tempMin.setText("Minimum temperature = "+temMinText);
-            tempMax.setText("Maximum temperature = "+temMaxText);
+            StringTokenizer text = new StringTokenizer(result);
+
+            temp.setText("Temperature = "+ text.nextElement() + "!!");
+            tempMin.setText("Minimum temperature = "+ text.nextElement() +"!!!");
+            tempMax.setText("Maximum temperature = "+ text.nextElement() + "!!!!!");
             weatherImage.setImageBitmap(image);
             progressBar.setVisibility(View.INVISIBLE);
         }

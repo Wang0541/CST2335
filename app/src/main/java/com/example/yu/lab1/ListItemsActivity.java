@@ -103,6 +103,7 @@ public class ListItemsActivity extends AppCompatActivity {
         // replace the button's image with your new picture
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
+            //???
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageButton.setImageBitmap(imageBitmap);
         }

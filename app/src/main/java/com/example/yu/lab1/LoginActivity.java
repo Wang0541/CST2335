@@ -16,8 +16,8 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "StartActivity";
-    protected static final String SETTING = "anything";
-    protected static final String TAG = "Jamesdebug";
+    protected static final String SETTING = "fileName";
+    protected static final String TAG = "JamesDebug";
 
 
     Button login;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 login_Name = (EditText)findViewById(R.id.editInp);
 
                 // Once you get editor, you will be able to use putString method
-                // when you put String here, we should get string back after
+                // when you put String here(set string), we should get string back after
                 editor.putString("DefaultEmail",login_Name.getText().toString() );
                 editor.commit();
 
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.i(ACTIVITY_NAME, "In onStart()");
 
         SharedPreferences prs = getSharedPreferences(SETTING, Context.MODE_PRIVATE);
-        // set defaultEmail symtax: email@domain.com
+        // read from sharedPreferences
         String defaultEmail = prs.getString("DefaultEmail", "email@domain.com");
         login_Name = (EditText)findViewById(R.id.editInp);
         login_Name.setText(defaultEmail);
